@@ -1,0 +1,19 @@
+services:
+  dao-test-ready:
+    build: ./docker
+    container_name: dao-test-ready
+    stdin_open: true
+    tty: true
+    ports:
+      - "8545:8545"
+      - "4000:4000"
+      - "3000:3000"
+    volumes:
+      - ./packages/backend:/workspace/backend
+      - ./packages/frontend:/workspace/frontend
+    networks:
+      - dao-network
+
+networks:
+  dao-network:
+    driver: bridge
