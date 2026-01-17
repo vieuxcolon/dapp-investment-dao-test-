@@ -1,3 +1,5 @@
+version: "3.9"
+
 services:
   dao-test-ready:
     build: ./docker
@@ -5,9 +7,9 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - "8545:8545"
-      - "4000:4000"
-      - "3000:3000"
+      - "8545:8545"  # Hardhat RPC
+      - "4000:4000"  # Backend
+      - "3000:3000"  # Frontend
     volumes:
       - ./packages/contracts:/workspace/contracts
       - ./packages/backend:/workspace/backend
