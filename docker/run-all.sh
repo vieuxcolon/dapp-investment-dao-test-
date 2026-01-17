@@ -3,7 +3,7 @@ set -e
 
 echo "=== Docker Test: Compile & Deploy DAO Contracts ==="
 
-cd /workspace/packages/contracts
+cd /workspace/contracts
 
 echo "Installing npm dependencies..."
 npm install
