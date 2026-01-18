@@ -1,17 +1,26 @@
 #!/bin/bash
 set -e
 
-echo "=== Docker Test: Compile & Deploy DAO Contracts ==="
+echo "========================================="
+echo " DAO Investment DApp – Contracts Pipeline "
+echo "========================================="
 
-cd /workspace/contracts
+CONTRACTS_DIR="/workspace/packages/contracts"
 
-echo "Installing npm dependencies..."
+if [ ! -d "$CONTRACTS_DIR" ]; then
+  echo "❌ Contracts directory not found: $CONTRACTS_DIR"
+  exit 1
+fi
+
+cd $CONTRACTS_DIR
+
+echo "📦 Installing npm dependencies..."
 npm install
 
-echo "Compiling contracts with Hardhat..."
+echo "🔨 Compiling smart contracts..."
 npx hardhat compile
 
-echo "Deploying contracts..."
-npx hardhat run scripts/deploy.ts --network localhost
+echo "🚀 Deploying contracts (Hardhat in-memory network)..."
+npx hardhat run scripts/deploy.ts --network hardhat
 
-echo "✅ Contracts compiled and deployed successfully!"
+echo "✅ Contracts compiled, deployed, and addresses saved!"
