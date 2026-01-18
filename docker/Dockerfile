@@ -1,8 +1,10 @@
+# Use a lightweight Ubuntu image
 FROM ubuntu:22.04
 
+# Set working directory
 WORKDIR /workspace
 
-# System dependencies
+# Install system dependencies
 RUN apt-get update -y && \
     apt-get install -y curl git build-essential python3 && \
     rm -rf /var/lib/apt/lists/*
@@ -11,14 +13,13 @@ RUN apt-get update -y && \
 RUN curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
     apt-get install -y nodejs
 
-# Global tooling
-RUN npm install -g typescript ts-node npm@10.8.2
+# Install global tooling for TypeScript
+RUN npm install -g typescript@5.2.2 ts-node@10.9.1
 
-# Copy repo
-COPY . /workspace
-
-# Ensure scripts are executable
+# Copy Docker scripts (run-all.sh)
+COPY docker/run-all.sh /workspace/docker/run-all.sh
 RUN chmod +x /workspace/docker/run-all.sh
 
 # Default command
 CMD ["/workspace/docker/run-all.sh"]
+
