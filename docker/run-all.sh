@@ -16,13 +16,7 @@ fi
 
 cd $CONTRACTS_DIR
 
-# Remove old node_modules to avoid stale dependency issues
-if [ -d "node_modules" ]; then
-  echo "🧹 Cleaning old node_modules..."
-  rm -rf node_modules
-fi
-
-# Install npm dependencies
+# Install npm dependencies if not already present
 echo "📦 Installing npm dependencies..."
 npm install
 
@@ -47,3 +41,4 @@ else
 fi
 
 echo "🎉 Contracts compiled, deployed, and verified successfully!"
+
